@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +21,6 @@ import com.ibingbo.workflowapp.filter.FilterChain;
 import com.ibingbo.workflowapp.filter.FilterChainFactory;
 import com.ibingbo.workflowapp.filter.FilterManager;
 import com.ibingbo.workflowapp.filter.one.OneFilterManager;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = {"com.ibingbo.workflowapp.*"})
 @RestController
@@ -34,9 +33,9 @@ public class WorkflowAppApplication {
         SpringApplication.run(WorkflowAppApplication.class, args);
     }
 
-    @GetMapping("/hello")
+    @RequestMapping("/index")
     public String hello() {
-        return "hello,world";
+        return "index";
     }
 
     @PostMapping("/operation/add")
@@ -59,4 +58,5 @@ public class WorkflowAppApplication {
         chain.doFilter(new Request(), new Response(), manager);
         return "complete done";
     }
+
 }
